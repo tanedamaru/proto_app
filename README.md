@@ -1,24 +1,68 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users table
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null false|
+|email|string|null false, unique true|
+|password|string|null false|
 
-Things you may want to cover:
+### Association
+- has_many :blogs
+- has_many :comments
 
-* Ruby version
 
-* System dependencies
+## blogs table
 
-* Configuration
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null false, foreign_key true|
+|title|string|null false|
+|text|text|null false|
 
-* Database creation
+### Association
+- has_many :tags, through: :blogs_tags
+- has_many :commnets, through: :blogs_comments
+- belongs_to :users
 
-* Database initialization
 
-* How to run the test suite
+## blogs_tags table
+|Column|Type|Options|
+|------|----|-------|
+|blog_id|integer|null false,foreign_key|
+|tag_id|integer|null false,foreign_key|
 
-* Services (job queues, cache servers, search engines, etc.)
+### Association
+- belomgs_to :blogs
+- belongs_to :tags
 
-* Deployment instructions
 
-* ...
+## tags table
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null false, unique true|
+
+### Association
+- has_many :blogs, through: :blogs_tags
+
+
+## blogs_comments table
+|Column|Type|Options|
+|------|----|-------|
+|blog_id|integer|null false,foreign_key|
+|comments_id|integer|null false,foreign_key|
+
+### Association
+- belomgs_to :blogs
+- belongs_to :comments
+
+
+## tags table
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null false, foregin_key true|
+|text|text|null false|
+
+### Association
+- has_many :blogs, through: :blogs_tags
+
