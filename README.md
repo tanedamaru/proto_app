@@ -57,7 +57,7 @@
 - belongs_to :comments
 
 
-## tags table
+## comments table
 |Column|Type|Options|
 |------|----|-------|
 |user_id|integer|null false, foregin_key true|

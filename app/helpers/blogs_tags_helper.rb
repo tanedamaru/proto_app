@@ -1,0 +1,2 @@
+module BlogsTagsHelper
+end
